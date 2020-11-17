@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html style="background-color:Green;">
+    <head>
+    
+        <h1> <center> What is in your refrigerator? </center></h1>
+        <center> <img src="https://media.istockphoto.com/photos/refrigerator-picture-id160948720?b=1&k=6&m=160948720&s=170667a&w=0&h=NkUfBIpvvL_tbLvqrWSNX7izzQpYQyFxykPQFJmAMxE="> </center>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1pt solid black;
+                padding: 1em;
+            }
+            h1 {
+                color: blue;
+            }
+            img {
+                height: 200px;
+                width: 200px;
+            }
+
+        </style>        
+    </head>
+    <body style="background-color:Green;">
+
+        <center>
+        <table>
+            <tr>
+                <th>     Type     </th>
+                <th>     Food     </th>
+                <th>     Quantity    </th>
+                <th>     Add to Inventory     </th>
+            </tr>
+
+            <tr>
+
+            <td><br>
+                <label> <strong><center>Produce</center></strong></label><br>
+            </td>
+
+            <td> 
+                <form method="POST" action="/inventory">       
+                    <input type="text" name="produceitem" placeholder="i.e. 'apple'"/>
+
+            </td>
+
+            <td> 
+                    <input type="text" name="producenumber"placeholder="Type number here"/>
+            </td><br>
+
+            <td>
+            <center><button>   + Add New Item <button/></center>
+            </td>
+                
+            </tr>
+
+
+            <tr>
+            <td>
+            <label> <strong><center>Meats</center></strong></label><br>
+            </td>
+            <td> 
+            <input type="text" name="meatitem" placeholder="i.e. 'turkey'"/>
+            <br><br>
+            </td>
+            <td> <input type="text" name="meatnumber" placeholder="Type number here"/></td><br>
+            <td>
+            <center><button>   + Add New Item   <button/></center>
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <label> <strong><center>Dairy</center></strong></label><br>
+            </td>
+            <td> 
+            <input type="text" name="dairyitem" placeholder="i.e. 'milk'"/>
+            
+            </td>
+            <td> <input type="text" name="dairynumber" placeholder="Type number here"/></td><br>
+            <td>
+            <center><button>   + Add New Item   <button/></center>
+            </td>
+            </tr>
+            </form> 
+        </table>
+        <br>
+        <button>Submit</button>
+        </center>
+        <br>
+
+
+
+
+
+
+
+
+        <br> 
+        <h2> <strong><center>Current Refrigerator Inventory </strong></center></h2>
+        <table>
+        <tr>
+        <th> <h3> Produce: <br></h3> </th>
+        <th><h3> Meats: <br></h3></th>
+        <th> <h3> Dairy: <br></h3> </th>
+        </tr>
+
+        <td>
+        <p> <%= @produceitem %> - <%= @producenumber %></p>
+        </td>
+        <td>
+        <p> <%= @meatitem %> - <%= @meatnumber %></p>
+        </td>
+        <td>
+        <p> <%= @dairyitem %> - <%= @dairynumber %></p>
+        </td>
+        
+        </table>
+        <h2> Click <a href="/inventory/index">here</a> for a printable version of your inventory:</h2>
+        
+    </body>
+</html>

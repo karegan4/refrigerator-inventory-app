@@ -1,0 +1,7 @@
+<h1> <%= @food.food %></h1>
+<%= @food.quantity %>
+
+<form method="post" action="/inventory/"<%= @food.id %>">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit"/>
+</form>

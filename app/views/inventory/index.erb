@@ -1,0 +1,10 @@
+<ul>
+<% @foods.each do |fridgefood| %>
+    <li>
+        a href="/inventory/index/<%= fridgefood.id %>">
+        <%= fridgefood.food%>
+        <%= fridgefood.quantity%>
+        </a>
+    </li>
+<%end%>
+</ul>

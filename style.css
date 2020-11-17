@@ -1,0 +1,14 @@
+/* img {
+    width: 50%;
+    height: 50%;
+  } */
+head {
+  text-align: center;
+}
+p {
+  background-color: blue;
+}
+#fridge1 {
+  width: 50%;
+  height: 50%;
+}
