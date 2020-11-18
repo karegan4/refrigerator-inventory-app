@@ -13,9 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20201116190743) do
 
-  create_table "fridge_foods", force: :cascade do |t|
-    t.string "food"
-    t.string "quantity"
+  create_table "foods", force: :cascade do |t|
+    t.string  "category"
+    t.string  "name"
+    t.integer "quantity"
   end
 
   create_table "users", force: :cascade do |t|

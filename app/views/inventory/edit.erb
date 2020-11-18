@@ -1,0 +1,14 @@
+<form method="POST" action="/foods/<%=@food.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch" />
+
+    <label for="category">Category</label>
+    <input type="text" id="category" name="category" value="<%=@food.category%>" />
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" value="<%=@food.name%>" />
+
+    <label for="quantity">Quantity</label>
+    <input type="text" id="quantity" name="quantity" value="<%=@food.quantity%>" />
+
+    <input type="submit" value="submit" />
+</form>

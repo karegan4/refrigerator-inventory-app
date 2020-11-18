@@ -1,7 +1,11 @@
-<h1> <%= @food.food %></h1>
-<%= @food.quantity %>
+<body style="background-color:Green;">
 
-<form method="post" action="/inventory/"<%= @food.id %>">
-    <input type="hidden" name="_method" value="delete" />
-    <input type="submit"/>
+<h1> Category: <%= @food.category %></h1>
+<h2> Name: <%= @food.name %> </h2>
+<h2>Quantity:<%= @food.quantity %></h2>
+
+<form method="POST" action="/foods/<%=@food.id%>">
+    <input type="hidden" name="_method" value="DELETE" />
+    <input type="submit" value="delete" />
 </form>
+</body>

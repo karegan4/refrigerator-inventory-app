@@ -27,97 +27,69 @@
         <center>
         <table>
             <tr>
-                <th>     Type     </th>
-                <th>     Food     </th>
+                <th>     Category     </th>
+                <th>     Name     </th>
                 <th>     Quantity    </th>
-                <th>     Add to Inventory     </th>
+
             </tr>
 
             <tr>
-
-            <td><br>
-                <label> <strong><center>Produce</center></strong></label><br>
+                <form method="POST" action="/foods">  
+            <td>
+                <input type="text" name="category" placeholder="i.e. 'produce'"/>
             </td>
 
             <td> 
-                <form method="POST" action="/inventory">       
-                    <input type="text" name="produceitem" placeholder="i.e. 'apple'"/>
+                     
+                    <input type="text" name="name" placeholder="i.e. 'apple'"/>
 
             </td>
 
             <td> 
-                    <input type="text" name="producenumber"placeholder="Type number here"/>
+                    <input type="text" name="quantity" placeholder="Type number here"/>
             </td><br>
 
             <td>
             <center><button>   + Add New Item <button/></center>
             </td>
-                
-            </tr>
-
-
-            <tr>
-            <td>
-            <label> <strong><center>Meats</center></strong></label><br>
-            </td>
-            <td> 
-            <input type="text" name="meatitem" placeholder="i.e. 'turkey'"/>
-            <br><br>
-            </td>
-            <td> <input type="text" name="meatnumber" placeholder="Type number here"/></td><br>
-            <td>
-            <center><button>   + Add New Item   <button/></center>
-            </td>
-            </tr>
-
-            <tr>
-            <td>
-            <label> <strong><center>Dairy</center></strong></label><br>
-            </td>
-            <td> 
-            <input type="text" name="dairyitem" placeholder="i.e. 'milk'"/>
-            
-            </td>
-            <td> <input type="text" name="dairynumber" placeholder="Type number here"/></td><br>
-            <td>
-            <center><button>   + Add New Item   <button/></center>
-            </td>
             </tr>
             </form> 
         </table>
         <br>
-        <button>Submit</button>
-        </center>
+        
         <br>
-
-
-
-
-
-
-
 
         <br> 
         <h2> <strong><center>Current Refrigerator Inventory </strong></center></h2>
         <table>
         <tr>
-        <th> <h3> Produce: <br></h3> </th>
-        <th><h3> Meats: <br></h3></th>
-        <th> <h3> Dairy: <br></h3> </th>
+        <th> <h3> Category: <br></h3> </th>
+        <th><h3> Name: <br></h3></th>
+        <th> <h3> Quantity: <br></h3> </th>
+        <th> </th>
         </tr>
+        <tr>
+        <% @foods.each do |food| %>
+            <td>
+            <p> <%= food.category %></p>
+            
+            <td>
+            <p> <%= food.name %></p>
+            </td>
 
-        <td>
-        <p> <%= @produceitem %> - <%= @producenumber %></p>
-        </td>
-        <td>
-        <p> <%= @meatitem %> - <%= @meatnumber %></p>
-        </td>
-        <td>
-        <p> <%= @dairyitem %> - <%= @dairynumber %></p>
-        </td>
-        
+            <td>
+            <p> <%= food.quantity %></p>
+            
+            </td>
+            <td>
+            <input type="submit" value="delete"/>
+
+            </td>
+            </tr>
+            
+        <% end %> 
         </table>
-        <h2> Click <a href="/inventory/index">here</a> for a printable version of your inventory:</h2>
+        <h5> Click <a href="/foods">here</a> for a printable version of your inventory:</h5>
         
     </body>
 </html>

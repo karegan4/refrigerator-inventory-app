@@ -1,10 +1,15 @@
+<body style="background-color: Green;">
+<h1>Refrigerator Inventory</h1>
 <ul>
-<% @foods.each do |fridgefood| %>
+<% @foods.each do |food| %>
     <li>
-        a href="/inventory/index/<%= fridgefood.id %>">
-        <%= fridgefood.food%>
-        <%= fridgefood.quantity%>
-        </a>
+        
+        <h5> Food Type: <%= food.name %> ---- Quantity: <%= food.quantity %></h5>
+
     </li>
-<%end%>
+    
+<% end %>
+
 </ul>
+<a href="/foods/new">Click here to add more food </a>
+</body>

@@ -54,7 +54,7 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(username: params[:username], password: params[:password])
     if @user
       session[:user_id] = @user.id
-      redirect '/inventory'
+      redirect '/foods/new'
     end
     redirect '/signinerror'
   end
@@ -63,52 +63,53 @@ class ApplicationController < Sinatra::Base
     erb :'sessions/signinerror'
   end
 
-  post '/inventory' do
-    @produceitem = params[:produceitem]
-    @producenumber = params[:producenumber]
-    @meatitem = params[:meatitem]
-    @meatnumber = params[:meatnumber]
-    @dairyitem = params[:dairyitem]
-    @dairynumber = params[:dairynumber]
-    erb :'inventory/new'
-  end
-
   #new
-  get "/inventory" do
-    @produceitem = FridgeFoods.new
-    @producenumber = FridgeFoods.new
-    @meatitem = FridgeFoods.new
-    @meatnumber = FridgeFoods.new
-    @dairyitem = FridgeFoods.new
-    @dairynumber = FridgeFoods.new
+  get "/foods/new" do
+    @foods = Food.all
     erb :'inventory/new'
+
   end
 
   #index
-  get '/inventory/index' do
-    @foods = FridgeFoods.all 
+  get '/foods' do
+    @foods = Food.all 
     erb :'inventory/index'
   end
 
   #show
-  get '/inventory/:id' do 
-    @food = FridgeFoods.find_by_id(params[:id])
-    erb :show
+  get "/foods/:id" do 
+    @food = Food.find_by_id(params[:id])
+    erb :'inventory/show'
   end
 
   #edit
-  get '/inventory/:id/edit' do
-    @foods = FridgeFoods.find_by_id(params[:id])
-    erb :edit
+  get '/foods/:id/edit' do
+    @food = Food.find_by_id(params[:id])
+    erb :'inventory/edit'
   end
-  
+
+  #update
+  patch '/foods/:id' do
+    @food = Food.find_by_id(params[:id])
+    @food.category = params[:category]
+    @food.name = params[:name]
+    @food.quantity = params[:quantity]
+    @food.save
+    redirect to "/foods/#{@food.id}"
+  end
+
   #create
+  post '/foods' do
+    @food = Food.create(params)
+    redirect "/foods/new"
+    
+  end
 
   #delete
-  delete '/inventory/:id' do
-    @food = FridgeFoods.find_by_id(params[:id])
+  delete '/foods/:id' do
+    @food = Food.find_by_id(params[:id])
     @food.delete
-    redirect to '/inventory'
+    redirect to '/foods/new'
   end
 
 end
