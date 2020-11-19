@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html style="background-color:Green;">
+
     <head>
     
         <h1> <center> What is in your refrigerator? </center></h1>
@@ -22,7 +21,7 @@
 
         </style>        
     </head>
-    <body style="background-color:Green;">
+    <body style="background-color:rgb(19, 230, 212);">
 
         <center>
         <table>
@@ -58,7 +57,6 @@
         <br>
         
         <br>
-
         <br> 
         <h2> <strong><center>Current Refrigerator Inventory </strong></center></h2>
         <table>
@@ -66,7 +64,7 @@
         <th> <h3> Category: <br></h3> </th>
         <th><h3> Name: <br></h3></th>
         <th> <h3> Quantity: <br></h3> </th>
-        <th> </th>
+ 
         </tr>
         <tr>
         <% @foods.each do |food| %>
@@ -82,8 +80,11 @@
             
             </td>
             <td>
-            <input type="submit" value="delete"/>
+            <a href="/foods/<%= food.id %>/edit" <h3> Edit Entry </h3> </a>
 
+            </td>
+            <td> 
+            <a href="/foods/<%= food.id %>" <h3> Delete Entry</h3> </a>
             </td>
             </tr>
             
@@ -91,5 +92,3 @@
         </table>
         <h5> Click <a href="/foods">here</a> for a printable version of your inventory:</h5>
         
-    </body>
-</html>
