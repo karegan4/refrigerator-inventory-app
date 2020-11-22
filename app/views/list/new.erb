@@ -1,0 +1,72 @@
+<head>
+<center> <img style="height: 150px; width: 150px;"src="https://cdn.pixabay.com/photo/2018/03/27/10/03/online-store-3265497__480.jpg"> </center>    
+<h1 style="color: rgb(21, 61, 146)"> <center> <u> What is on your shopping list? </u></center></h1>
+<style>
+head, body{
+    background-color: rgb(87, 47, 230);
+}
+</style>
+
+<link rel="stylesheet"  type="text/css" href="./main.css">
+</head>
+
+<body>
+    <center>
+        <table>
+            <tr>
+                <th> Category </th>
+                <th> Name </th>
+                <th> Quantity </th>
+            </tr>
+
+            <tr>
+                <form method="POST" action="/list">
+                <td>
+                    <input type="text" name="category" placeholder="i.e. 'produce'"/>
+                </td>
+                <td>
+                    <input type="text" name="name" placeholder="i.e.'apple'"/>
+                </td>
+                <td>
+                    <input type="text" name="quantity" placeholder="Type a number here"/>
+                </td>
+                <td>
+                    <center><button> + Add New Shopping List Item <button></center>
+                </td>
+            </tr>
+                </form>
+        </table>
+    
+    <h2 style="color: rgb(112, 18, 18);"> <strong><u><center>Current Shopping List </strong></u></center></h2>
+    
+    <table>
+    <tr>
+    <th> <h3> Category: </h3> </th>
+    <th> <h3> Name: </h3> </th>
+    <th> <h3> Quantity: </h3> </th>
+    </tr>
+
+    <tr>
+    <% @list_items.each do |list_item| %>
+        <td>
+        <p> <%= list_item.category %> </p>
+        </td>
+        <td>
+        <p> <%= list_item.name %> </p>
+        </td>
+        <td>
+        <p> <%= list_item.quantity %> </p>
+        </td>
+        <td>
+        <a href="/list/<%= list_item.id %>/edit" <h3> Edit Shopping List Item </h3> </a>
+        </td>
+        <td>
+        <a href="/list/<%= list_item.id %>" <h3> Delete Shopping List Item</h3></a>
+        </td>
+        </tr>
+    <% end %>
+    </table>
+    </center>
+    <br>
+    <h4> Click <a href="/list">here</a> for a printable version of your Shopping List</h4>
+</body>

@@ -8,11 +8,27 @@ class InventoryController < ApplicationController
 
   #new
   get "/foods/new" do
-    @foods = Food.all
+    @foods = Food.all.sort_by {|category_name| category_name.category}
+    @inv_foods = {} 
+    Food.all.each do |food|
+      cat = food.category 
+      if @inv_foods[cat] 
+        @inv_foods[cat] << food 
+      else 
+        @inv_foods[cat] = [food]
+      end
+    end
+
+    @cats = @inv_foods.keys
+
+    @values = @inv_foods.values
+
+
+
     @food = Food.find_by_id(params[:id])
     erb :'inventory/new'
-
   end
+ 
 
   #index
   get '/foods' do

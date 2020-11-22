@@ -2,17 +2,23 @@
 <link rel="stylesheet"  type="text/css" href="./main.css">
 </head>
 <body>
-<h1>Refrigerator Inventory</h1>
+<center> <h1> <u>Refrigerator Inventory</u> </h1> </center>
 <ul>
 <% @foods.each do |food| %>
     <li>
         
-        <h5> Food Type: <%= food.name %> ---- Quantity: <%= food.quantity %></h5>
+        <p> <strong>Item:</strong> <%= food.name %>&nbsp; &nbsp; &nbsp; &nbsp;<strong>Quantity: </strong> <%= food.quantity %></p>
 
     </li>
     
 <% end %>
 
 </ul>
+<br><br>
 <a href="/foods/new">Click here to add more food </a>
 </body>
+<footer>
+<br>
+<br>
+<center> <a href="/logout">Log Out</a>  </center>
+</footer>

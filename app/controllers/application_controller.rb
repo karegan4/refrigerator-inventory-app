@@ -63,5 +63,9 @@ class ApplicationController < Sinatra::Base
     erb :'sessions/signinerror'
   end
 
+  get '/logout' do
+    session.clear
+    redirect to '/'
+  end
 
 end

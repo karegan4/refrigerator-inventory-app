@@ -1,0 +1,24 @@
+<head>
+<style>
+head, body{
+    background-color: rgb(87, 47, 230);
+}
+</style>
+
+<link rel="stylesheet"  type="text/css" href="./main.css">
+
+</head>
+<body>
+<center> <h1> <u>Shopping List</u> </h1> </center>
+
+<ul>
+<% @list_items.each do |list_item| %>
+    
+        <p> <strong>Item:</strong> <%= list_item.name %> <br> <strong>Quantity: </strong> <%= list_item.quantity %></p><br>
+
+    
+<% end %>
+</ul>
+<br><br>
+<a href="/list/new">Click here to add more items to your shopping list </a>
+</body>

@@ -1,0 +1,25 @@
+<head>
+<link rel="stylesheet"  type="text/css" href="./main.css">
+<style>
+head, body{
+    background-color: rgb(87, 47, 230);
+}
+</style>
+</head>
+<body>
+<h2> Edit Shopping List Item Below: </h2>
+<form method="POST" action="/list/<%=@list_item.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch" />
+    
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" value="<%=@list_item.category%>" />
+    &nbsp; &nbsp;
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%=@list_item.name%>" />
+    &nbsp; &nbsp;
+    <label for="quantity">Quantity:</label>
+    <input type="text" id="quantity" name="quantity" value="<%=@list_item.quantity%>" />
+    &nbsp; &nbsp;
+    <input type="submit" value="Submit" />
+</form>
+</body>
