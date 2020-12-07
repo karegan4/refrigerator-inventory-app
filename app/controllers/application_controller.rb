@@ -31,11 +31,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/registrations" do
-    puts params
     @user = User.new(username: params["username"], email: params["email"], password: params["password"])
-    @user.save
-    session[:user_id] = @user.id
-    redirect to "/foods/new"
+    if @user.valid?
+      @user.save
+      session[:user_id] = @user.id
+      redirect to "/foods/new"
+    else
+      redirect to "/signup"
+    end
   end
 
 
