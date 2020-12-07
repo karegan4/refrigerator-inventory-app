@@ -1,17 +1,17 @@
 <head>
-<link rel="stylesheet"  type="text/css" href="./main.css">
+<link rel="stylesheet"  type="text/css" href="/stylesheets/welcome.css">
 
 </head>
 <body>
-<h1> Log in Below: </h1><br>
+
+<h1 style="color: black"> Log in Below: </h1><br>
 
 <form action="/sessions" method="POST">
-
 <label> Username: </label>
-<input type="text" name="username">
+<input type="text" name="username" required>
 
 <label> Password: </label>
-<input type="password" name="password">
+<input type="password" name="password" required>
 
 <input type="submit" value="Log In">
 

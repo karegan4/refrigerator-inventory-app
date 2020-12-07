@@ -1,0 +1,12 @@
+head, body{
+    background-color: rgb(87, 47, 230);
+}
+table, th, td{
+    border-collapse: collapse;
+    border: 1pt solid black;
+    padding: 1em;
+    text-align: center; 
+}
+p, h1, h2 {
+    color: black;
+}

@@ -1,16 +1,14 @@
 <head>
-<center> <img style="height: 150px; width: 150px;"src="https://cdn.pixabay.com/photo/2018/03/27/10/03/online-store-3265497__480.jpg"> </center>    
+<center> <img style="height: 150px; width: 150px;"src="https://cdn.pixabay.com/photo/2018/03/27/10/03/online-store-3265497__480.jpg"> </center>  <br>  
 <h1 style="color: rgb(21, 61, 146)"> <center> <u> What is on your shopping list? </u></center></h1>
-<style>
-head, body{
-    background-color: rgb(87, 47, 230);
-}
-</style>
+<br>
 
-<link rel="stylesheet"  type="text/css" href="./main.css">
+<link rel="stylesheet"  type="text/css" href="/stylesheets/list.css">
+
 </head>
 
 <body>
+
     <center>
         <table>
             <tr>
@@ -22,13 +20,13 @@ head, body{
             <tr>
                 <form method="POST" action="/list">
                 <td>
-                    <input type="text" name="category" placeholder="i.e. 'produce'"/>
+                    <input type="text" name="category" placeholder="i.e. 'produce'" required/>
                 </td>
                 <td>
-                    <input type="text" name="name" placeholder="i.e.'apple'"/>
+                    <input type="text" name="name" placeholder="i.e.'apple'" required/>
                 </td>
                 <td>
-                    <input type="text" name="quantity" placeholder="Type a number here"/>
+                    <input type="number" name="quantity" placeholder="Type a number here" required/>
                 </td>
                 <td>
                     <center><button> + Add New Shopping List Item <button></center>
@@ -36,7 +34,7 @@ head, body{
             </tr>
                 </form>
         </table>
-    
+    <br><br><br>
     <h2 style="color: rgb(112, 18, 18);"> <strong><u><center>Current Shopping List </strong></u></center></h2>
     
     <table>
@@ -68,5 +66,12 @@ head, body{
     </table>
     </center>
     <br>
-    <h4> Click <a href="/list">here</a> for a printable version of your Shopping List</h4>
+    <center><h4> Click <a href="/list">here</a> for a printable version of your Shopping List</h4></center>
 </body>
+<footer>
+<br>
+<br>
+<center> Click <a href="/foods/new">here </a> to go back to your refrigerator inventory </center>
+<br>
+<center> <a href="/logout">Log Out</a>  </center>
+</footer>

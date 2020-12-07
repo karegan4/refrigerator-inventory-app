@@ -1,24 +1,34 @@
-  <head>
+<head>
+<link rel="stylesheet"  type="text/css" href="/stylesheets/welcome.css">
 
-  </head>
-  <body>
+</head>
+<body>
+<div id="wrapper">
+<div class="dropdown">
+  <button class="dropbtn">Sign Up / Log In</button>
+  <div class="dropdown-content">
+    <a href="/signup">Sign Up</a>
+    <a href="/sessions/login">Log In</a>
+  </div>
+</div><br><br>
+
+
 
       <header>
-        <center><h2 style="font-family: "Fantasy", Fantasy, Fantasy;">Welcome to the Refrigerator Inventory and Grocery List App!</h2></center>
+        <center><h2>Welcome to the Refrigerator Inventory and Grocery List App!</h2></center>
         <center><img src="https://cdn.pixabay.com/photo/2016/12/07/09/41/refrigerator-1889067__480.jpg"> </center>
-        <link rel="stylesheet"  type="text/css" href="./main.css">
-
+        <style>
+        p { font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; color: black}
+        </style>
       </header>
 
-          <center><p><i>To get started, click "Sign up" or click "Log In" if you've been here before.</i></p></center>
 
-    <br>
-    <br>
-    <form method="POST" action="/signup">
-      <input type="submit" value="   Sign up   ">
-    </form>
-    <br>
-    <form method="POST" action="/sessions/login">
-      <input type="submit" value="   Log In   ">
-    </form>
-  </body>
+
+
+          <center><p><i>Have you ever walked to your refrigerator and couldn't find something <br>inside of it that you were SURE was inside?</i>
+          <br>You don't need to worry anymore!</p>
+          <p> With the <u>Refrigerator Inventory and Grocery List App</u>, you can create a list <br>of what is inside of your refrigerator,
+          and print it out!</p>
+          <p>You can also create a shopping list with foods that you need to buy and print it out!</p>
+          <p> Click "Sign Up/Log In" above to create an account to get started or sign in with an existing account. </p>
+          </center>

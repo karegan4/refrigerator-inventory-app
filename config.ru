@@ -7,5 +7,4 @@ end
 
 use InventoryController
 use ListItemController
-use UserController
 run ApplicationController

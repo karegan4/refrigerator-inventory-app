@@ -1,50 +1,67 @@
-require './config/environment'
-
 class ListItemController < ApplicationController
-    configure do
-        set :public_folder, 'public'
-        set :views, 'app/views'
-    end
 
     #new
     get '/list/new' do
-        @list_items = ListItem.all
-        @list_item = ListItem.find_by_id(params[:id])
-        erb :'list/new'
+        if logged_in?
+            @list_items = current_user.list_items.sort_by {|category_name| category_name.category}
+            erb :'list/new'
+        else
+            redirect to "/"
+        end
     end
 
     #index
     get '/list' do
-        @list_items = ListItem.all
-        erb :'list/index'
+        if logged_in?
+            @list_items = current_user.list_items
+            erb :'list/index'
+        else
+            redirect to "/"
+        end
     end
 
     #show
     get '/list/:id' do
-        @list_item = ListItem.find_by_id(params[:id])
-        erb :'list/show'
+        if logged_in? && current_user.list_items.find_by_id(params[:id])
+            @list_item = current_user.list_items.find_by_id(params[:id])
+            erb :'list/show'
+        else
+            erb :"/list/access_denied"
+        end
     end
 
     #edit
     get '/list/:id/edit' do
-        @list_item = ListItem.find_by_id(params[:id])
-        erb :'list/edit'
+        @list_item = current_user.list_items.find_by_id(params[:id])
+        if logged_in? && @list_item
+            erb :'list/edit'
+        else
+            erb :"/list/access_denied"
+        end
     end
 
     #update
     patch '/list/:id' do
-        @list_item = ListItem.find_by_id(params[:id])
-        @list_item.category = params[:category]
-        @list_item.name = params[:name]
-        @list_item.quantity = params[:quantity]
-        @list_item.save
-        redirect to "/list/new"
+        @list_item = current_user.list_items.find_by_id(params[:id])
+        if logged_in? && current_user.list_items.find_by_id(params[:id])
+            @list_item.category = params[:category]
+            @list_item.name = params[:name]
+            @list_item.quantity = params[:quantity]
+            @list_item.save
+            redirect to "/list/new"
+        else
+            redirect to "/"
+        end
     end
 
     #create
     post '/list' do
-        @list_item = ListItem.create(params)
-        redirect to '/list/new'
+        if logged_in?
+            @list_item = current_user.list_items.create(category: params[:category], name: params[:name], quantity: params[:quantity])
+            redirect to '/list/new'
+        else
+            redirect to "/"
+        end
     end
 
     #delete

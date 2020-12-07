@@ -1,14 +1,15 @@
 
     <head>
     
-        <h1 style="color: rgb(21, 61, 146)"> <center> <u> What is in your refrigerator? </u></center></h1>
+        <h1 style="color: rgb(50, 109, 168)"> <center> <u> What is in your refrigerator? </u></center></h1><br>
         <center> <img src="https://media.istockphoto.com/photos/refrigerator-picture-id160948720?b=1&k=6&m=160948720&s=170667a&w=0&h=NkUfBIpvvL_tbLvqrWSNX7izzQpYQyFxykPQFJmAMxE="> </center>
-  
-        <link rel="stylesheet"  type="text/css" href="./main.css">
+        <link rel="stylesheet"  type="text/css" href="/stylesheets/table.css">
+        <style>
+        p{
+            color: black;
+        }
+        </style>
     </head>
-    <header>
-    
-    </header>
     <body>
 
         <center>
@@ -23,17 +24,17 @@
             <tr>
                 <form method="POST" action="/foods">  
             <td>
-                <input type="text" name="category" placeholder="i.e. 'produce'"/>
+                <input type="text" name="category" placeholder="i.e. 'produce'" required/>
             </td>
 
             <td> 
                      
-                    <input type="text" name="name" placeholder="i.e. 'apple'"/>
+                    <input type="text" name="name" placeholder="i.e. 'apple'" required/>
 
             </td>
 
             <td> 
-                    <input type="text" name="quantity" placeholder="Type number here"/>
+                    <input type="number" name="quantity" placeholder="Type number here" required/>
             </td><br>
 
             <td>

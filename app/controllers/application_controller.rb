@@ -5,26 +5,28 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-  end
-
-  configure do
     enable :sessions
     set :session_secret, "secret"
   end
 
+  helpers do
+    #returns true if there is a user_id in the session hash, indicating a user is signed in
+    def logged_in?
+      !!session[:user_id]
+    end
+    #returns the instance of a user that is signed in, assigns them to @current_user
+    def current_user
+      @current_user ||=User.find_by(id: session[:user_id])
+    end
+  end
+
   get "/" do
+    @message = session[:message]
+    session[:message] = nil
     erb :welcome
   end
 
   get "/signup" do
-    erb :'/registrations/signup'
-  end
-
-  post "/signup" do
-    erb :'/registrations/signup'
-  end
-
-  get '/registrations' do
     erb :'/registrations/signup'
   end
 
@@ -36,23 +38,18 @@ class ApplicationController < Sinatra::Base
     redirect to "/registrations/thankyou"
   end
 
+
   get '/registrations/thankyou' do
     erb :'/registrations/thankyou'
   end
-
-
 
   get "/sessions/login" do
     erb :'sessions/login'
   end
 
-  post "/sessions/login" do
-    erb :'sessions/login'
-  end
-
-  post '/sessions' do
-    @user = User.find_by(username: params[:username], password: params[:password])
-    if @user
+   post '/sessions' do
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/foods/new'
     end

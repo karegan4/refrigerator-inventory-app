@@ -1,67 +1,68 @@
-require './config/environment'
-
 class InventoryController < ApplicationController
-    configure do
-        set :public_folder, 'public'
-        set :views, 'app/views'
-    end
 
   #new
   get "/foods/new" do
-    @foods = Food.all.sort_by {|category_name| category_name.category}
-    @inv_foods = {} 
-    Food.all.each do |food|
-      cat = food.category 
-      if @inv_foods[cat] 
-        @inv_foods[cat] << food 
-      else 
-        @inv_foods[cat] = [food]
-      end
+    if logged_in?
+      @foods = current_user.foods.sort_by {|category_name| category_name.category}
+      erb :'inventory/new'
+    else
+      redirect to "/"
     end
-
-    @cats = @inv_foods.keys
-
-    @values = @inv_foods.values
-
-
-
-    @food = Food.find_by_id(params[:id])
-    erb :'inventory/new'
   end
  
 
   #index
   get '/foods' do
-    @foods = Food.all 
-    erb :'inventory/index'
+    if logged_in? && current_user.foods
+      @foods = current_user.foods
+      erb :'inventory/index'
+    else
+      redirect to "/"
+    end
   end
 
   #show
   get "/foods/:id" do 
-    @food = Food.find_by_id(params[:id])
-    erb :'inventory/show'
+    if logged_in? && current_user.foods.find_by_id(params[:id])
+      @food = current_user.foods.find_by_id(params[:id])
+      erb :'inventory/show'
+    else
+      erb :"/inventory/access_denied"
+    end
   end
 
   #edit
   get '/foods/:id/edit' do
-    @food = Food.find_by_id(params[:id])
-    erb :'inventory/edit'
+      @food = current_user.foods.find_by_id(params[:id])
+    if logged_in? && @food
+      erb :'inventory/edit'
+    else
+      erb :"/inventory/access_denied"
+    end
   end
 
   #update
   patch '/foods/:id' do
-    @food = Food.find_by_id(params[:id])
-    @food.category = params[:category]
-    @food.name = params[:name]
-    @food.quantity = params[:quantity]
-    @food.save
-    redirect to "/foods/new"
+      @food = current_user.foods.find_by_id(params[:id])
+    if logged_in? && @food
+      @food.category = params[:category]
+      @food.name = params[:name]
+      @food.quantity = params[:quantity]
+      @food.save
+      redirect to "/foods/new"
+    else
+      redirect to "/"
+    end
   end
 
   #create
   post '/foods' do
-    @food = Food.create(params)
-    redirect "/foods/new"
+    if logged_in? && current_user.foods
+      @food = current_user.foods.create(category: params[:category], name: params[:name], quantity: params[:quantity])
+      redirect "/foods/new"
+    else
+      redirect to "/"
+    end
     
   end
 
