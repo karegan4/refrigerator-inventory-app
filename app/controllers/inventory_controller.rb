@@ -1,5 +1,10 @@
 class InventoryController < ApplicationController
 
+  get '/foods/all' do
+    @foods = Food.all
+    erb :"/inventory/all"
+  end
+
   #new
   get "/foods/new" do
     if logged_in?
@@ -57,7 +62,7 @@ class InventoryController < ApplicationController
 
   #create
   post '/foods' do
-    if logged_in? && current_user.foods
+    if logged_in? 
       @food = current_user.foods.create(category: params[:category], name: params[:name], quantity: params[:quantity])
       redirect "/foods/new"
     else
@@ -68,9 +73,18 @@ class InventoryController < ApplicationController
 
   #delete
   delete '/foods/:id' do
-    @food = Food.find_by_id(params[:id])
-    @food.delete
-    redirect to '/foods/new'
+    if !logged_in? 
+      redirect to "/"
+    end
+    @food = current_user.foods.find_by_id(params[:id])
+    if @food
+      @food.delete
+      redirect to '/foods/new'
+    else
+      redirect to "/"
+    end
   end
+
+
 
 end
