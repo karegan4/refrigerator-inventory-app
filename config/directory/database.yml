@@ -9,3 +9,5 @@ production:
   pool: 5
   host: <%= ENV['DATABASE_HOST'] %>
   database: <%= ENV['refrigeratorapp'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
